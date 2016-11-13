@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: #f5f5f5;
+  font-family: "microsoft yahei"; }
+
+nav {
+  margin-left: 200px;
+  margin-top: 50px; }
+  nav a {
+    display: inline-block;
+    width: 120px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #565656; }
+    nav a.active {
+      color: #070d12;
+      font-weight: bold;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3) inset;
+      background-image: linear-gradient(to top, #dae6f0, #90b4d2);
+      border-radius: 8px 8px 0 0;
+      border: 1px dashed #fff;
+      border-bottom: none;
+      z-index: 2; }
+
+.content {
+  background-color: #dae6f0;
+  padding: 25px;
+  border: 20px solid #dae6f0;
+  border-radius: 5px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3) inset; }
+
+.half {
+  width: 360px;
+  height: 640px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  margin-left: 200px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  border: 5px solid #a2c0d9;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.3) inset; }
+  .half:last-of-type {
+    margin-left: 480px; }
+  .half div {
+    width: 1080px;
+    height: 640px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 0.8s ease-in-out; }
+    .half div img {
+      width: 360px;
+      height: 640px; }
+
+.whole {
+  width: 1200px;
+  height: 600px;
+  position: relative;
+  margin-left: 200px;
+  overflow: hidden;
+  border: 5px solid #a2c0d9;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.3) inset; }
+  .whole div {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: all 1s ease-in-out; }
+    .whole div img {
+      width: 1200px;
+      height: 600px; }
+
+.intro {
+  width: 900px;
+  margin: 0 auto;
+  margin-top: 50px;
+  color: #565656; }
+  .intro table {
+    border: 1px solid #a2c0d9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.3) inset; }
+    .intro table td {
+      width: 350px;
+      padding-left: 15px;
+      height: 56px;
+      line-height: 56px; }
+  .intro section {
+    text-indent: 12pt;
+    width: 800px;
+    line-height: 200%;
+    margin-top: 20px;
+    margin-bottom: 50px; }
+
+.history {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 25px;
+  color: #565656; }
+  .history ul li {
+    line-height: 250%;
+    width: 900px; }
+    .history ul li span:first-of-type {
+      display: inline-block;
+      width: 180px; }
+    .history ul li span:last-of-type {
+      width: 700px; }
+
+/*# sourceMappingURL=style.css.map */
