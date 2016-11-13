@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<script src="http://static.runoob.com/assets/react/react-0.14.7/build/react.min.js"></script>
+		<script src="http://static.runoob.com/assets/react/react-0.14.7/build/react-dom.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/react-router/0.13.3/ReactRouter.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="http://static.runoob.com/assets/react/browser.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<title></title>
+	</head>
+
+	<body>
+		
+		<script type="text/babel">
+			var Router = ReactRouter;
+			var Route = ReactRouter.Route; 
+			var RouteHandler = ReactRouter.RouteHandler;
+			var Link = ReactRouter.Link;
+			var StateMixin = ReactRouter.State;
+			var DefaultRoute = ReactRouter.DefaultRoute;
+			
+			//定义图片路径
+			var imgJson = { "dream":["1.jpg", "2.jpg", "3.jpg"], "develop":["1.jpg", "2.jpg", "3.jpg"], "online":["1.png", "2.png", "3.png", "4.png"]};
+			//为路径增加实际路径
+			var addUrl = function(arr, loca){
+				for(var i = 0; i < arr.length; i++){
+					arr[i] = "img/" + loca + "/" + arr[i];
+				}
+				return arr;
+			}
+			addUrl(imgJson.dream, "dream");
+			addUrl(imgJson.develop, "develop");
+			addUrl(imgJson.online, "online");
+			//应用入口
+			var App = React.createClass({
+			  render() {
+			    return (
+			      <div className="main">
+			        <nav>
+			        	<Link to="show" >作品</Link>
+			        	<Link to="intro">介绍</Link>
+			        	<Link to="history">履历</Link>
+			        </nav>
+			        <section className="content">
+			        	<RouteHandler />
+			        </section>
+			      </div>
+			    )
+			  }
+			});
+			//定义作品展示组件
+			
+			var ImgShow = React.createClass({
+				getInitialState: function(){
+					return {
+						left: 0
+					};
+				},
+				componentDidMount: function(){
+					var long = this.props.long;
+					var play = setInterval(function(){
+						var left = this.state.left;
+						left -= long;
+						if(left == -(long*3)){
+							left = 0;
+						}
+						this.setState({
+							left: left
+						});
+					}.bind(this), 3000);
+				},
+				
+				render(){
+					var detail = this.props.detail;
+					var iteams = [];
+					for(var i=0; i<detail.length; i++){
+						iteams.push(<img src={detail[i]} />);
+					}
+					return(
+							<div className={this.props.name}>
+								<div style={{left: this.state.left+"px"}}>{iteams}</div>
+							</div>
+							
+						
+					);
+				}
+			});
+			
+			var ImgShow2 = React.createClass({
+				getInitialState: function(){
+					return {
+						top: 0
+					};
+				},
+				componentDidMount: function(){
+					var long = this.props.long;
+					var play = setInterval(function(){
+						var top = this.state.top;
+						top -= long;
+						if(top == -(long*4)){
+							top = 0;
+						}
+						this.setState({
+							top: top
+						});
+					}.bind(this), 4000);
+				},
+				render(){
+					var detail = this.props.detail;
+					var iteams = [];
+					for(var i=0; i<detail.length; i++){
+						iteams.push(<img src={detail[i]} />);
+					}
+					return(
+							<div className={this.props.name}>
+								<div style={{top: this.state.top+"px"}}>{iteams}</div>
+							</div>
+							
+						
+					);
+				}
+			});
+			
+			var Show = React.createClass({
+				render(){
+					return(
+						<div>
+							<section>
+								<ImgShow name="half" detail={imgJson.dream} play="h" long="360"/>
+								<ImgShow name="half" detail={imgJson.develop} play="h" long="360"/>
+							</section>
+							<section>
+								<ImgShow2 name="whole" detail={imgJson.online} play="v" long="604"/>
+							</section>
+						</div>
+					);
+				}
+			});
+			
+			
+			//定义自我介绍页
+			
+			var Intro = React.createClass({
+				render() {
+					return(
+						<div className="intro">
+							<table>
+								<tr>
+   									<td>姓名：杨望超</td>
+   									<td> 求职意向：WEB前端程序员</td>
+   								</tr>
+   								<tr>
+   									<td>民族：汉族 </td>
+   									<td>出生年月：199212</td>
+   								</tr>
+   								<tr>
+   									<td>电话：18825146597</td>
+   									<td>邮箱：627023990@qq. com</td>
+   								</tr>
+   								
+   								<tr>
+   									<td>学历：本科</td>
+   									<td>现住：广州海珠区 </td>
+   								</tr>
+   								<tr>
+   									<td>毕业院校：广东药科大学（原广东药学院）</td>
+   									
+   								</tr>
+							</table>
+							
+							<section>
+								本人熟悉HTML(5)+CSS(3)+Javascript，大学期间学习Java开发，此后学习过PHP(ThinkPHP)，也学习过nodeJS(express框架)。熟练使用JQuery、zepto库和scss使用，掌握React.js框架
+								(本页面便是使用了React开发的单页面)，熟悉webpack。对微信页面开发较有经验。熟悉使用PhotoShop、Hbuilder及office等软件。
+								<br />
+								<b>有一年的WEB前端开发经验。</b>
+								<br />
+								Github: <a href="http://github.com/sinyupl">github.com/sinyupl</a>
+							</section>
+						</div>
+						
+					);
+				}
+			});
+			
+			//定义履历介绍页
+			var History = React.createClass({
+				render(){
+					return(
+						<div className="history">
+							<ul>
+								<li><span>2014.12-2015.2 </span> 在星宇电讯从事Hybird App开发</li>
+								<li><span>2015.7-9 </span>             在蓝海基业从事WEB前端开发，主要负责外包项目</li>
+								<li><span>2016.4-8</span>              在广州联大从事WEB前端开发，主要开发项目大概如下</li>
+								<li><span>2016.4    </span>              开发“欧神诺”的一期官网以及微信活动页面</li>
+								<li><span>2016.5</span>                  负责来自“猪八戒”获得的外包项目的抽奖页面开发</li>
+								<li><span>2016.6</span>                  负责“富莱电梯”、“即刻学堂”、“欧神诺活动二期”等前端开发 </li>
+								<li><span>2016.7  </span>                广州联大官网推翻，重新制作，负责前端改写； 以及市政府宣讲微信页面的前端开发</li>
+								<li><span>2016.8</span>         "欧神诺"三期任务，负责其公司官网制作</li>
+							</ul>
+						</div>
+					);
+				}
+			});
+			
+			//定义页面上的路由
+			var routes = (
+				<Route handler={App}>
+					<Route name="show" handler={Show} />
+					<Route name="intro" handler={Intro} />
+					<Route name="history" handler={History} />
+					<DefaultRoute handler={Show} />
+				</Route>
+			);
+			Router.run(routes, Router.HashLocation, function(Root){
+				React.render(<Root />, document.body);
+			});
+		</script>
+	</body>
+
+</html>
